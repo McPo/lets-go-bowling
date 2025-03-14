@@ -1,4 +1,4 @@
-import BowlingGame from '../src/lib';
+import BowlingGame from '@/lib';
 
 it("Simple Roll", () => {
     const game = new BowlingGame();
