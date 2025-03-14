@@ -1,1 +1,3 @@
-console.log('Helloworld');
+import BowlingGame from './lib';
+
+console.log('Helloworld', new BowlingGame());
