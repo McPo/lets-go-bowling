@@ -1,5 +1,7 @@
-import BowlingGame from '/src/lib';
+import BowlingGame from '../src/lib';
 
-it("2 + 2", () => {
-    expect(2 + 2).toBe(4);
+it("Simple Roll", () => {
+    const game = new BowlingGame();
+    game.roll(5)
+    expect(game.score).toBe(5);
 });
