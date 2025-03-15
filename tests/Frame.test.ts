@@ -1,5 +1,10 @@
 import Frame, { calculateScore } from '@/lib/Frame';
 
+test('Frame score', () => {
+    const f = new Frame([5,3]);
+    expect(f.score).toEqual(8);
+});
+
 test('Basic rolls', () => {
     expect(calculateScore([
         new Frame([5,3]),
