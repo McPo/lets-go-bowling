@@ -32,6 +32,13 @@ test('Increment Frame', () => {
     expect(g.currentFrameNumber).toEqual(2);
 });
 
+test('Game over', () => {
+    const g = new BowlingGame();
+    const mockIsGameOver = jest.spyOn(g, 'isGameOver', 'get').mockImplementation()
+    mockIsGameOver.mockReturnValue(true);
+    expect(() => g.roll(0)).toThrow('Game Over');
+});
+
 afterEach(() => {
     jest.resetModules();
     jest.clearAllMocks();
