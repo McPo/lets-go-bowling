@@ -21,6 +21,10 @@ export default class BowlingGame {
         if (currentFrame.isComplete) this._currentFrameIndex++
     }
 
+    public get currentFrameNumber() {
+        return this._currentFrameIndex+1;
+    }
+
     public get score() {
         return calculateScore(this._frames)
     }
