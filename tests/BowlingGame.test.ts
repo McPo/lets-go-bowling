@@ -37,4 +37,6 @@ test('Increment Frame', () => {
     mockFrameComplete.mockReturnValue(true)
     g.roll(0);
     expect(g.currentFrameNumber).toEqual(2);
+
+    mockFrameComplete.mockClear()
 });
