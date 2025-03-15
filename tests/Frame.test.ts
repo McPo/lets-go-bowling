@@ -45,3 +45,13 @@ test('Spare rolls', () => {
         +2+1
     );
 });
+
+test('Strike rolls', () => {
+    expect(calculateScore([
+        new Frame([10]),
+        new Frame([5,4])
+    ]) ).toEqual(
+        10+5+4
+        +5+4
+    );
+});

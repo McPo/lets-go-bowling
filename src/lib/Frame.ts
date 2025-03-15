@@ -28,7 +28,8 @@ export default class Frame {
 
 export function calculateScore(frames:Frame[]): number {
     return frames.flat().reduce((sum,f,i) => {
-        if (f.isSpare) return sum+f.score+frames[i+1].rolls[0];
+        if (f.isStrike) return sum+f.score+frames[i+1].rolls[0]+frames[i+1].rolls[1];
+        else if (f.isSpare) return sum+f.score+frames[i+1].rolls[0];
         else return sum+f.score
     }, 0);
 }
