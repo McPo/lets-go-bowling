@@ -18,7 +18,7 @@ export default class BowlingGame {
     private _currentFrameIndex : number = 0;
 
     public roll(numPins:number) {
-        if (this.isGameOver) throw 'Game Over';
+        if (this.isGameOver) throw 'Game Over'; // need to decide if i like using getters internal, makes it easier to mock
 
         const currentFrame = this.currentFrame;
         currentFrame.roll(numPins);
@@ -33,7 +33,7 @@ export default class BowlingGame {
     }
 
     public get currentFrameNumber() {
-        return this._currentFrameIndex+1;
+        return this._currentFrameIndex+1; // need to prevent going above whats allowed? test still to be written
     }
 
     public get currentFrame() {

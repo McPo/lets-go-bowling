@@ -6,7 +6,7 @@ export class FinalFrame extends Frame {
             + (this.isFillBall ? 1 : 0);
     }
 
-    public get isFillBall() {
+    public get isFillBall() {// needs test
         return (this.isSpare || this.isStrike)
     }
 }
