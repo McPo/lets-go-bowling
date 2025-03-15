@@ -1,5 +1,5 @@
 import Frame from '@/lib/Frame';
-import FinalFrame from '@/lib/Frame';
+import FinalFrame from '@/lib/FinalFrame';
 import { calculateScore } from '@/lib/helpers';
 
 test('Basic rolls', () => {
