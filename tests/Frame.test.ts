@@ -5,6 +5,11 @@ test('Frame score', () => {
     expect(f.score).toEqual(8);
 });
 
+test('Frame rolls', () => {
+    const f = new Frame([5,3]);
+    expect(f.rolls).toEqual([5,3]);
+});
+
 test.each([
         [ new Frame([5,3]), false ],
         [ new Frame([9,1]), true ],
