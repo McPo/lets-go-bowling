@@ -20,6 +20,10 @@ export default class Frame {
     public get isSpare() {
         return this._rolls.length == 2 && sumArray(this._rolls) === MAX_PINS;
     }
+
+    public get isStrike() {
+        return this._rolls.length === 1 && this._rolls[0] === MAX_PINS;
+    }
 }
 
 export function calculateScore(frames:Frame[]): number {

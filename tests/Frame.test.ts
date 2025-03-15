@@ -18,6 +18,14 @@ test.each([
     expect(frame.isSpare).toEqual(result);
 });
 
+test.each([
+        [ new Frame([5,3]), false ],
+        [ new Frame([9,1]), false ],
+        [ new Frame([10]), true ]
+    ])('Frame isStrike', (frame, result) => {
+    expect(frame.isStrike).toEqual(result);
+});
+
 test('Basic rolls', () => {
     expect(calculateScore([
         new Frame([5,3]),
