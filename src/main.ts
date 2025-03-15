@@ -1,3 +1,7 @@
 import BowlingGame from '@/lib';
 
-console.log('Helloworld', new BowlingGame());
+const game = new BowlingGame();
+/*
+    game.roll(10);
+    game.score();
+*/
