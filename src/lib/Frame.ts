@@ -1,4 +1,5 @@
 const MAX_PINS = 10;
+const ROLLS_PER_FRAME = 2;
 
 const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r, 0)
 
@@ -7,6 +8,14 @@ export default class Frame {
 
     constructor(rolls:number[] = []) {
         this._rolls = rolls;
+    }
+
+    public roll(count:number) {
+        this._rolls.push(count);
+    }
+
+    public get isComplete() {
+        return this.isStrike || this._rolls.length === ROLLS_PER_FRAME;
     }
 
     public get score() {

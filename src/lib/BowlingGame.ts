@@ -1,12 +1,27 @@
+import Frame, { calculateScore } from './Frame';
 
 export default class BowlingGame {
-    private _score : number = 0;
+    private _frames : Frame[] = [
+        new Frame(),
+        new Frame(),
+        new Frame(),
+        new Frame(),
+        new Frame(),
+        new Frame(),
+        new Frame(),
+        new Frame(),
+        new Frame(),
+        new Frame(),
+    ];
+    private _currentFrameIndex : number = 0;
 
     public roll(numPins:number) {
-        this._score += numPins;
+        const currentFrame = this._frames[this._currentFrameIndex]
+        currentFrame.roll(numPins);
+        if (currentFrame.isComplete) this._currentFrameIndex++
     }
 
     public get score() {
-        return this._score;
+        return calculateScore(this._frames)
     }
 }

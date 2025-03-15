@@ -13,6 +13,24 @@ test('Frame rolls', () => {
     expect(f.rolls).toEqual([5,3]);
 });
 
+test('Frame roll', () => {
+    const f = new Frame();
+    f.roll(10);
+    f.roll(5);
+    f.roll(4);
+    expect(f.rolls).toEqual([10, 5, 4]);
+});
+
+test.each([
+    [ new Frame([]), false ],
+    [ new Frame([1]), false ],
+    [ new Frame([10]), true ],
+    [ new Frame([9,1]), true ],
+    [ new Frame([5,3]), true ],
+])('Frame isComplete', (f, result) => {
+    expect(f.isComplete).toEqual(result);
+});
+
 test.each([
         [ new Frame([5,3]), false ],
         [ new Frame([9,1]), true ],
