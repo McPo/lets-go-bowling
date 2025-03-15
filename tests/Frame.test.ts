@@ -55,3 +55,15 @@ test('Strike rolls', () => {
         +5+4
     );
 });
+
+test('Strikes in a row', () => {
+    expect(calculateScore([
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10])
+    ]) ).toEqual(
+        10+10+10
+        +10+10
+        +10
+    );
+});
