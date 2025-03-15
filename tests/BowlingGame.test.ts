@@ -1,7 +1,7 @@
 import BowlingGame from '@/lib/BowlingGame';
 
 test('Bowling score calls calculateScore', () => {
-    const mockCalculateScore = jest.spyOn(require('@/lib/Frame'), 'calculateScore').mockImplementation()
+    const mockCalculateScore = jest.spyOn(require('@/lib/helpers'), 'calculateScore').mockImplementation()
 
     mockCalculateScore.mockReturnValue(1234);
     const g = new BowlingGame();

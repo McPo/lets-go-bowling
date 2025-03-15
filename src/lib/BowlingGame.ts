@@ -1,4 +1,6 @@
-import Frame, { calculateScore, FinalFrame } from './Frame';
+import Frame from '@/lib/Frame';
+import FinalFrame from '@/lib/Frame';
+import { calculateScore } from '@/lib/helpers';
 
 export default class BowlingGame {
     private _frames : Frame[] = [
@@ -27,7 +29,7 @@ export default class BowlingGame {
     }
 
     public get isGameOver() {
-        return this.currentFrame === undefined;//.isComplete && this._currentFrameIndex === this._frames.length;
+        return this.currentFrame === undefined;
     }
 
     public get currentFrameNumber() {

@@ -1,7 +1,7 @@
-const MAX_PINS = 10;
-const ROLLS_PER_FRAME = 2;
+import { sumArray } from './helpers';
 
-const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r, 0)
+export const MAX_PINS = 10;
+export const ROLLS_PER_FRAME = 2;
 
 export default class Frame {
     protected _rolls : number[];
@@ -33,25 +33,4 @@ export default class Frame {
     public get isStrike() {
         return this._rolls[0] === MAX_PINS;
     }
-}
-
-export class FinalFrame extends Frame {
-    public get isComplete() {
-        return this._rolls.length === ROLLS_PER_FRAME
-            + (this.isFillBall ? 1 : 0);
-    }
-
-    public get isFillBall() {
-        return (this.isSpare || this.isStrike)
-    }
-}
-
-export function calculateScore(frames:Frame[]): number {
-    return frames.flat().reduce((sum,f,i) => {
-        const upcomingRolls =  (x:number) : number[] => frames.slice(i+1).map(f => f.rolls).flat().slice(0, x);
-
-        if (f.isStrike) return sum + f.score + sumArray(upcomingRolls(2));
-        else if (f.isSpare) return sum + f.score + sumArray(upcomingRolls(1));
-        else return sum + f.score
-    }, 0);
 }
