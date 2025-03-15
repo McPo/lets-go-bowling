@@ -25,6 +25,10 @@ export default class BowlingGame {
         return this._currentFrameIndex+1;
     }
 
+    public get currentFrame() {
+        return this._frames[this._currentFrameIndex];
+    }
+
     public get score() {
         return calculateScore(this._frames)
     }
