@@ -54,6 +54,18 @@ test('Spare pending', () => {
     );
 });
 
+test('Spares in a row', () => {
+    expect(calculateScore([
+        new Frame([9, 1]),
+        new Frame([1, 9]),
+        new Frame([5, 5])
+    ]) ).toEqual(
+        9+1+1
+        +1+9+5
+        +5+5
+    );
+});
+
 test('Strike rolls', () => {
     expect(calculateScore([
         new Frame([10]),
@@ -61,6 +73,14 @@ test('Strike rolls', () => {
     ]) ).toEqual(
         10+5+4
         +5+4
+    );
+});
+
+test('Strike pending', () => {
+    expect(calculateScore([
+        new Frame([10])
+    ]) ).toEqual(
+        10
     );
 });
 
