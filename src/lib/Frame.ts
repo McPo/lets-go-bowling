@@ -31,7 +31,7 @@ export function calculateScore(frames:Frame[]): number {
         const upcomingRolls =  (x:number) : number[] => frames.slice(i+1).map(f => f.rolls).flat().slice(0, x);
 
         if (f.isStrike) return sum + f.score + sumArray(upcomingRolls(2));
-        else if (f.isSpare) return sum + f.score + frames[i+1].rolls[0];
+        else if (f.isSpare) return sum + f.score + sumArray(upcomingRolls(1));
         else return sum + f.score
     }, 0);
 }

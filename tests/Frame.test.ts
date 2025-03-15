@@ -46,6 +46,14 @@ test('Spare rolls', () => {
     );
 });
 
+test('Spare pending', () => {
+    expect(calculateScore([
+        new Frame([9,1])
+    ]) ).toEqual(
+        9+1
+    );
+});
+
 test('Strike rolls', () => {
     expect(calculateScore([
         new Frame([10]),
