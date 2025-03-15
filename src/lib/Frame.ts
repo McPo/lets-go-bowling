@@ -6,7 +6,7 @@ export const ROLLS_PER_FRAME = 2;
 export default class Frame {
     protected _rolls : number[];
 
-    constructor(rolls:number[] = []) {
+    constructor(rolls:number[] = []) { // constructor no longer needed, have test helper instead
         this._rolls = rolls;
     }
 
