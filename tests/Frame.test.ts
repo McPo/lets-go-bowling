@@ -116,3 +116,54 @@ test('Strikes in a row', () => {
         +10
     );
 });
+
+test('Spare on final frame', () => {
+    expect(calculateScore([
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([1, 9, 1]),
+    ]) ).toEqual(
+        1+9+1
+    );
+});
+
+test('Strike on final frame', () => {
+    expect(calculateScore([
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([0,0]),
+        new Frame([10, 10, 10]),
+    ]) ).toEqual(
+        10+10+10
+    );
+});
+
+test('Perfect Game', () => {
+    expect(calculateScore([
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10]),
+        new Frame([10, 10, 10]),
+    ]) ).toEqual(
+        300
+    );
+});
