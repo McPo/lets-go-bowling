@@ -1,8 +1,11 @@
 import Frame, { calculateScore } from '@/lib/Frame';
 
-test('Frame score', () => {
-    const f = new Frame([5,3]);
-    expect(f.score).toEqual(8);
+test.each([
+    [ new Frame([]), 0],
+    [ new Frame([1]), 1],
+    [ new Frame([5,3]), 8],
+])('Frame score', (f, result) => {
+    expect(f.score).toEqual(result);
 });
 
 test('Frame rolls', () => {
