@@ -1,4 +1,4 @@
-import Frame, { calculateScore } from './Frame';
+import Frame, { calculateScore, FinalFrame } from './Frame';
 
 export default class BowlingGame {
     private _frames : Frame[] = [
@@ -11,7 +11,7 @@ export default class BowlingGame {
         new Frame(),
         new Frame(),
         new Frame(),
-        new Frame(),
+        new FinalFrame(),
     ];
     private _currentFrameIndex : number = 0;
 
@@ -27,7 +27,7 @@ export default class BowlingGame {
     }
 
     public get isGameOver() {
-        return this.currentFrame.isComplete && this._currentFrameIndex === this._frames.length;
+        return this.currentFrame === undefined;//.isComplete && this._currentFrameIndex === this._frames.length;
     }
 
     public get currentFrameNumber() {

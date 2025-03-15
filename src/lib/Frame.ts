@@ -4,7 +4,7 @@ const ROLLS_PER_FRAME = 2;
 const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r, 0)
 
 export default class Frame {
-    private _rolls : number[];
+    protected _rolls : number[];
 
     constructor(rolls:number[] = []) {
         this._rolls = rolls;
@@ -27,11 +27,18 @@ export default class Frame {
     }
 
     public get isSpare() {
-        return this._rolls.length == 2 && sumArray(this._rolls) === MAX_PINS;
+        return (this._rolls[0] + this._rolls[1]) === MAX_PINS;
     }
 
     public get isStrike() {
-        return this._rolls.length === 1 && this._rolls[0] === MAX_PINS;
+        return this._rolls[0] === MAX_PINS;
+    }
+}
+
+export class FinalFrame extends Frame {
+    public get isComplete() {
+        return this._rolls.length === ROLLS_PER_FRAME
+            + ((this.isSpare || this.isStrike) ? 1 : 0);
     }
 }
 

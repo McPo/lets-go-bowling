@@ -1,4 +1,4 @@
-import Frame, { calculateScore } from '@/lib/Frame';
+import Frame, { calculateScore, FinalFrame } from '@/lib/Frame';
 
 test.each([
     [ new Frame([]), 0],
@@ -145,7 +145,7 @@ test('Strike on final frame', () => {
         new Frame([0,0]),
         new Frame([0,0]),
         new Frame([0,0]),
-        new Frame([10, 10, 10]),
+        new FinalFrame([10, 10, 10]),
     ]) ).toEqual(
         10+10+10
     );
@@ -162,7 +162,7 @@ test('Perfect Game', () => {
         new Frame([10]),
         new Frame([10]),
         new Frame([10]),
-        new Frame([10, 10, 10]),
+        new FinalFrame([10, 10, 10]),
     ]) ).toEqual(
         300
     );
