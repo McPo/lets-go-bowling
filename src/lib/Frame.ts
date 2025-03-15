@@ -38,7 +38,11 @@ export default class Frame {
 export class FinalFrame extends Frame {
     public get isComplete() {
         return this._rolls.length === ROLLS_PER_FRAME
-            + ((this.isSpare || this.isStrike) ? 1 : 0);
+            + (this.isFillBall ? 1 : 0);
+    }
+
+    public get isFillBall() {
+        return (this.isSpare || this.isStrike)
     }
 }
 
