@@ -5,15 +5,12 @@ test('Frame score', () => {
     expect(f.score).toEqual(8);
 });
 
-test('Frame isSpare', () => {
-    let f = new Frame([5,3]);
-    expect(f.isSpare).toEqual(false);
-
-    f = new Frame([9,1]);
-    expect(f.isSpare).toEqual(true);
-
-    f = new Frame([1,9]);
-    expect(f.isSpare).toEqual(true);
+test.each([
+        [ new Frame([5,3]), false ],
+        [ new Frame([9,1]), true ],
+        [ new Frame([1,9]), true ]
+    ])('Frame isSpare', (frame, result) => {
+    expect(frame.isSpare).toEqual(result);
 });
 
 test('Basic rolls', () => {
