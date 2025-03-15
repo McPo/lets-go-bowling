@@ -21,7 +21,7 @@ export default class BowlingGame {
         const currentFrame = this._frames[this._currentFrameIndex]
         currentFrame.roll(numPins);
 
-        if (!this.isGameOver && currentFrame.isComplete) {
+        if (currentFrame.isComplete) {
             this._currentFrameIndex++;
         }
     }
