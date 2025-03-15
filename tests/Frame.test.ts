@@ -1,6 +1,6 @@
 import Frame, { calculateScore } from '@/lib/Frame';
 
-test("Basic rolls", () => {
+test('Basic rolls', () => {
     expect(calculateScore([
         new Frame([5,3]),
         new Frame([2,1])
@@ -10,7 +10,7 @@ test("Basic rolls", () => {
     );
 });
 
-test("Spare rolls", () => {
+test('Spare rolls', () => {
     expect(calculateScore([
         new Frame([9,1]),
         new Frame([2,1])
