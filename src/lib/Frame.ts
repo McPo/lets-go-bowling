@@ -1,3 +1,6 @@
+const MAX_PINS = 10;
+
+const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r)
 
 export default class Frame {
     private _rolls : number[];
@@ -7,7 +10,11 @@ export default class Frame {
     }
 
     public get score() {
-        return this._rolls.reduce((sum, r) => sum+r);
+        return sumArray(this._rolls);
+    }
+
+    public get isSpare() {
+        return this._rolls.length == 2 && sumArray(this._rolls) === MAX_PINS;
     }
 }
 

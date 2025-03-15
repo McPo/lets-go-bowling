@@ -5,6 +5,17 @@ test('Frame score', () => {
     expect(f.score).toEqual(8);
 });
 
+test('Frame isSpare', () => {
+    let f = new Frame([5,3]);
+    expect(f.isSpare).toEqual(false);
+
+    f = new Frame([9,1]);
+    expect(f.isSpare).toEqual(true);
+
+    f = new Frame([1,9]);
+    expect(f.isSpare).toEqual(true);
+});
+
 test('Basic rolls', () => {
     expect(calculateScore([
         new Frame([5,3]),
