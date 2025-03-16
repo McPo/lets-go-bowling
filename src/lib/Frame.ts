@@ -11,12 +11,11 @@ export default class Frame {
     }
 
     public roll(count:number) {
-         // throw error? and add test
+        if (this.isComplete) throw new Error('Frame is over');
         this._rolls.push(count);
     }
 
     public get pinCount() {
-        // get rid of this ?
         return sumArray(this._rolls);
     }
 
@@ -28,12 +27,20 @@ export default class Frame {
         return this.isStrike || this._rolls.length === ROLLS_PER_FRAME;
     }
 
-    // Technically a spare must be accomplished in first 2 rolls
+    /*
+        Technically a spare must be accomplished in the *first 2 rolls*
+        This is important when considering a FinalFrame with 3 rolls
+        However it is also technically the exact logic for any Frame
+    */
     public get isSpare() {
         return (this._rolls[0] + this._rolls[1]) === MAX_PINS;
     }
 
-    // Technically a strike must occur on first roll of frame
+    /*
+        Technically a spare must be accomplished in the *first 2 rolls*
+        This is important when considering a FinalFrame with 3 rolls
+        However it is also technically the exact logic for any Frame
+    */
     public get isStrike() {
         return this._rolls[0] === MAX_PINS;
     }

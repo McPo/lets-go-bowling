@@ -18,10 +18,20 @@ describe('Frame', () => {
 
     test('.roll records rolls', () => {
         const f = new Frame();
-        f.roll(10);
+        f.roll(8);
         f.roll(5);
-        f.roll(4);
-        expect(f.rolls).toEqual([10, 5, 4]);
+        expect(f.rolls).toEqual([8, 5]);
+    });
+
+    /*
+        I would not normally do this
+        I would normaly just try rolling again in the above test and assert the error
+        However this might be more in keeping with the unit tests you specified
+    */
+    test('.roll ', () => {
+        const f = new Frame();
+        const firstFrameRoll = jest.spyOn(f, 'isComplete', 'get').mockReturnValue(true);
+        expect(() => f.roll(10)).toThrow('Frame is over');
     });
 
     test.each([
