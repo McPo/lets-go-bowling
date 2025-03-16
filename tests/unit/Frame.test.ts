@@ -1,42 +1,41 @@
 import Frame from '@/lib/Frame';
 
-test('toString', () => {
-    const f = new Frame([3,6])
-    expect(f.toString()).toEqual('Frame[3,6]');
-});
 
-test.each([
-    [ new Frame([]), 0],
-    [ new Frame([1]), 1],
-    [ new Frame([5,3]), 8],
-])('Frame score', (f, result) => {
-    expect(f.score).toEqual(result);
-});
+describe('Frame', () => {
 
-test('Frame rolls', () => {
-    const f = new Frame([5,3]);
-    expect(f.rolls).toEqual([5,3]);
-});
+    // Think we should get rid of this, its redundant and gives the wrong impression
+    test.each([
+        [ 'Empty', new Frame([]), 0],
+        [ 'Single roll', new Frame([1]), 1],
+        [ 'Two rolls', new Frame([5,3]), 8],
+    ])('Simple frame score %s', (name, f, result) => {
+        expect(f.score).toEqual(result);
+    });
 
-test('Frame roll', () => {
-    const f = new Frame();
-    f.roll(10);
-    f.roll(5);
-    f.roll(4);
-    expect(f.rolls).toEqual([10, 5, 4]);
-});
+    test('.rolls returns rolls', () => {
+        const f = new Frame([5,3]);
+        expect(f.rolls).toEqual([5,3]);
+    });
 
-test.each([
-    [ new Frame([]), false ],
-    [ new Frame([1]), false ],
-    [ new Frame([10]), true ],
-    [ new Frame([9,1]), true ],
-    [ new Frame([5,3]), true ],
-])('Frame isComplete', (f, result) => {
-    expect(f.isComplete).toEqual(result);
-});
+    test('.roll records rolls', () => {
+        const f = new Frame();
+        f.roll(10);
+        f.roll(5);
+        f.roll(4);
+        expect(f.rolls).toEqual([10, 5, 4]);
+    });
 
-test.each([
+    test.each([
+        [ 'Empty', new Frame([]), false ],
+        [ 'Incomplete', new Frame([1]), false ],
+        [ 'Stike', new Frame([10]), true ],
+        [ 'Spare', new Frame([9,1]), true ],
+        [ 'Full', new Frame([5,3]), true ],
+    ])('isComplete %s', (name, f, result) => {
+        expect(f.isComplete).toEqual(result);
+    });
+
+    test.each([
         [ new Frame([5,3]), false ],
         [ new Frame([9,1]), true ],
         [ new Frame([1,9]), true ],
@@ -46,11 +45,11 @@ test.each([
             This has an impact on the FinalFrame
         */
         [ new Frame([1,0,9]), false ]
-    ])('Frame isSpare', (frame, result) => {
-    expect(frame.isSpare).toEqual(result);
-});
+    ])('isSpare %s', (frame, result) => {
+        expect(frame.isSpare).toEqual(result);
+    });
 
-test.each([
+    test.each([
         [ new Frame([5,3]), false ],
         [ new Frame([9,1]), false ],
         [ new Frame([10]), true ],
@@ -60,6 +59,13 @@ test.each([
             This has an impact on the FinalFrame
         */
         [ new Frame([0,10,10]), false ]
-    ])('Frame isStrike', (frame, result) => {
-    expect(frame.isStrike).toEqual(result);
+        ])('isStrike %s', (frame, result) => {
+            expect(frame.isStrike).toEqual(result);
+    });
+
+    test('toString', () => {
+        const f = new Frame([3, 6])
+        expect(f.toString()).toEqual('Frame[3,6]');
+    });
+
 });

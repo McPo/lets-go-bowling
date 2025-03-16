@@ -136,5 +136,5 @@ describe('Helpers', () => {
         });
 
     });
-g
+
 });
