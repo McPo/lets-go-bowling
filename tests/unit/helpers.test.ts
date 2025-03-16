@@ -11,6 +11,7 @@ describe('Helpers', () => {
         expect(sumArray(arr)).toEqual(result);
     });
 
+    // Technically not a unit test as Frame.score is called, we could remove it though
     describe('calculateScore', () => {
 
         test('Basic rolls', () => {
