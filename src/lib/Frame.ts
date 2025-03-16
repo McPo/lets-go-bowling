@@ -57,4 +57,5 @@ export default class Frame {
     public toString(): string {
         return `${this.constructor.name}[${this._rolls.toString()}]` 
     }
+
 }
