@@ -38,8 +38,6 @@ describe('BowlingGame', () => {
         expect(mockFrameRoll).toHaveBeenCalledWith(123);
     });
 
-    // add readonly frame tests
-
     test.each([
         ['Dont increment frame on roll as not completed', false, 1],
         ['Increment frame on roll as completed', true, 2],
