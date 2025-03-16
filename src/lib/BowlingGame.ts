@@ -29,7 +29,7 @@ export default class BowlingGame {
     }
 
     public get isGameOver() {
-        return this.currentFrameNumber === this._frames.length && this.currentFrame.isComplete;
+        return this.currentFrame instanceof FinalFrame && this.currentFrame.isComplete;
     }
 
     public get currentFrameNumber() {
