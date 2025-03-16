@@ -2,11 +2,6 @@ import FinalFrame from '@/lib/FinalFrame';
 
 describe('FinalFrame', () => {
 
-    test('toString', () => {
-        const f = new FinalFrame([3,6])
-        expect(f.toString()).toEqual('FinalFrame[3,6]');
-    });
-
     test.each([
         [ new FinalFrame([8, 1]), true ],
         [ new FinalFrame([9, 1]), false ],
@@ -29,6 +24,11 @@ describe('FinalFrame', () => {
         [ new FinalFrame([10, 10, 10]), true ],
     ])('isFillBall %s', (f, result) => {
         expect(f.isFillBall).toEqual(result);
+    });
+
+    test('toString', () => {
+        const f = new FinalFrame([3,6])
+        expect(f.toString()).toEqual('FinalFrame[3,6]');
     });
 
 });
