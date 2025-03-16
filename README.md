@@ -18,3 +18,4 @@ To run the game script in _./src/main.ts_ execute `npm start`.
 - I have left some integration tests that I found helpful.
 - May have overused getters, not sure I'm a fan of `isStrike` etc. being a getter. It should have just been a normal method.
 - I've added some comments throughout the codebase, about areas to nitpick. Generally I would keep comments to documenting business logic.
+- Looking forward to having the chance to discuss the codebase with you.
