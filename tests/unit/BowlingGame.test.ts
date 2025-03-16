@@ -2,17 +2,20 @@ import BowlingGame from '@/lib/BowlingGame';
 import Frame from '@/lib/Frame';
 import FinalFrame from '@/lib/FinalFrame';
 
-jest.mock('@/lib/Frame', () => {
-    // Auto mocking doesnt support getters annoyingly
-    return jest.fn().mockImplementation(() => ({
-        roll: jest.fn(),
-        get isComplete() {
-            return false;
-        }
-    }));
-});  
-
 describe('BowlingGame', () => {
+    jest.mock('@/lib/Frame', () => {
+        /*
+            Auto mocking, causes an issue with getters
+            To maintain purity of unit tests mock the whole class
+            I personally would be tempted to just use spy on relevant methods
+        */
+        return jest.fn().mockImplementation(() => ({
+            roll: jest.fn(),
+            get isComplete(): boolean {
+                return false;
+            }
+        }));
+    });
 
     test('.score calls helpers.calculateScore', () => {
         const mockCalculateScore = jest.spyOn(require('@/lib/helpers'), 'calculateScore').mockImplementation()
@@ -52,7 +55,14 @@ describe('BowlingGame', () => {
 
     test('Game over', () => {
         const f = new FinalFrame();
-        jest.spyOn(f, 'isComplete', 'get').mockReturnValue(true);
+        /*
+            Initially it is not completed until after the roll
+            Should maybe have the .roll mock set it to true
+            As relying on sequential calls might make this test more brittle
+        */
+        jest.spyOn(f, 'isComplete', 'get')
+            .mockReturnValueOnce(false)
+            .mockReturnValueOnce(true);
 
         const g = new BowlingGame([ f ]);
         g.roll(0)
