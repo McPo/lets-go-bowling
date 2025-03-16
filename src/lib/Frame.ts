@@ -6,8 +6,7 @@ export const ROLLS_PER_FRAME = 2;
 export default class Frame {
     protected _rolls : number[]; // can we limit this here
 
-    constructor(rolls:number[] = []) { // constructor no longer needed, have test helper instead
-        console.log('here i am');
+    constructor(rolls:number[] = []) { // constructor no longer needed, have test helper insteadq
         this._rolls = rolls;
     }
 
@@ -16,7 +15,7 @@ export default class Frame {
         this._rolls.push(count);
     }
 
-    public get score() {
+    public get pinCount() {
         // get rid of this ?
         return sumArray(this._rolls);
     }

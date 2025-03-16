@@ -12,7 +12,7 @@ describe('Helpers', () => {
     });
 
     /*
-        These arent technically unit tests as it calls Frame.score
+        These arent technically unit tests as it calls Frame.pinCount
         However we need to pass in an array of Frames
         And then we would just be re-implementing that logic here
         I dont think its worth it, just to keep the purity of a "unit test"

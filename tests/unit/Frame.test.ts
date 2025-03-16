@@ -3,13 +3,12 @@ import Frame from '@/lib/Frame';
 
 describe('Frame', () => {
 
-    // Think we should get rid of this, its redundant and gives the wrong impression
     test.each([
         [ 'Empty', new Frame([]), 0],
         [ 'Single roll', new Frame([1]), 1],
         [ 'Two rolls', new Frame([5,3]), 8],
     ])('Simple frame score %s', (name, f, result) => {
-        expect(f.score).toEqual(result);
+        expect(f.pinCount).toEqual(result);
     });
 
     test('.rolls returns rolls', () => {
