@@ -4,7 +4,7 @@ export const MAX_PINS = 10;
 export const ROLLS_PER_FRAME = 2;
 
 export default class Frame {
-    protected _rolls : number[];
+    protected _rolls : number[]; // can we limit this here
 
     constructor(rolls:number[] = []) { // constructor no longer needed, have test helper instead
         this._rolls = rolls;
