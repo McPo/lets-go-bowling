@@ -12,8 +12,16 @@ describe('BowlingGame', () => {
         expect(mockCalculateScore).toHaveBeenCalledWith(g.frames);
     });
 
-    // roll calls frame.roll
+    test('.roll calls frame.roll', () => {
+        const g = new BowlingGame();
+        const mockFrameRoll = jest.spyOn(g.currentFrame, 'roll').mockImplementation()
+        g.roll(123);
+        expect(mockFrameRoll).toHaveBeenCalledTimes(1);
+        expect(mockFrameRoll).toHaveBeenCalledWith(123);
+    });
+
     // currentframenumber currentframe isGameOver
+    // add readonly frame tests
 
     test.each([
         ['Dont increment frame on roll as not completed', false, 1],
