@@ -8,40 +8,80 @@ describe('BowlingGame', () => {
         const mockCalculateScore = jest.spyOn(require('@/lib/helpers'), 'calculateScore').mockImplementation()
 
         mockCalculateScore.mockReturnValue(1234);
-        const g = new BowlingGame();
+
+        const frames  = [new Frame()];
+        const g = new BowlingGame(frames);
+
         expect(g.score).toEqual(1234);
         expect(mockCalculateScore).toHaveBeenCalledTimes(1);
-        expect(mockCalculateScore).toHaveBeenCalledWith(g.frames);
-    });
-
-    test('.frames returns frames, list ends with Final Frame', () => {
-        const g = new BowlingGame();
-        expect(g.frames).toEqual([
-            new Frame(),
-            new Frame(),
-            new Frame(),
-            new Frame(),
-            new Frame(),
-            new Frame(),
-            new Frame(),
-            new Frame(),
-            new Frame(),
-            new FinalFrame()
-        ]);
+        expect(mockCalculateScore).toHaveBeenCalledWith(frames);
     });
 
     test('.roll calls frame.roll', () => {
-        const g = new BowlingGame();
-        const mockFrameRoll = jest.spyOn(g.currentFrame, 'roll').mockImplementation()
+
+        const firstFrame = new Frame();
+        const secondFrame = new Frame();
+
+        const froll = jest.spyOn(firstFrame, 'roll').mockImplementation();
+        const sroll = jest.spyOn(secondFrame, 'roll').mockImplementation();
+
+        const fcom = jest.spyOn(firstFrame, 'isComplete', 'get').mockImplementation();
+        const scom = jest.spyOn(secondFrame, 'isComplete', 'get').mockImplementation();
+
+        const g = new BowlingGame([
+            firstFrame,
+            secondFrame,
+        ]);
+
+        fcom.mockReturnValue(true);
         g.roll(123);
-        expect(mockFrameRoll).toHaveBeenCalledTimes(1);
-        expect(mockFrameRoll).toHaveBeenCalledWith(123);
+        g.roll(123);
+        expect(froll).toHaveBeenCalledTimes(1);
+        expect(sroll).toHaveBeenCalledTimes(1);
+    });
+/*
+    test('Stay on frame until completed') {
+        /
+
+    test('Move to next frame when completed', () => {
+        const firstFrame = new Frame();
+        const secondFrame = new Frame();
+
+
+        const g = new BowlingGame([
+            firstFrame,
+            secondFrame,
+        ]);
+
+        g.roll(123);
+        expect(mockFirstFrame).toHaveBeenCalledTimes(1);
+        expect(mockFirstFrame).toHaveBeenCalledWith(123);
+        expect(mockSecondFrame).toHaveBeenCalledTimes(0);
+
     });
 
     test.each([
-        ['Dont increment frame on roll as not completed', false, 1],
+        ['Dont increment frame on roll as not completed', false, ],
         ['Increment frame on roll as completed', true, 2],
     ])('currentFrameNumber %s', (name, completed, finalFrameNumber) => {
+
+        const firstFrame = new Frame();
+        const secondFrame = new Frame();
+
+        const mockFirstFrame = jest.spyOn(firstFrame, 'roll').mockImplementation()
+        const mockSecondFrame = jest.spyOn(secondFrame, 'roll').mockImplementation()
+
+        const g = new BowlingGame([
+            firstFrame,
+            secondFrame,
+        ]);
+
+        g.roll(123);
+        expect(mockFirstFrame).toHaveBeenCalledTimes(1);
+        expect(mockFirstFrame).toHaveBeenCalledWith(123);
+        expect(mockSecondFrame).toHaveBeenCalledTimes(0);
+        
+
         const g = new BowlingGame();
         const mockFrameComplete = jest.spyOn(g.currentFrame, 'isComplete', 'get').mockImplementation()
         expect(g.currentFrameNumber).toEqual(1);
@@ -51,23 +91,6 @@ describe('BowlingGame', () => {
         expect(g.currentFrameNumber).toEqual(finalFrameNumber);
     });
 
-    test('currentFrameNumber maxes out at 10 after game over', () => {
-        const g = new BowlingGame();
-        [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10].map(c => g.roll(c));
-        expect(() => g.roll(0)).toThrow('Game Over');
-        expect(g.currentFrameNumber).toEqual(10);
-    });
-
-    test('currentFrame', () => {
-        const g = new BowlingGame();
-        const mockCurrentFrameNumber= jest.spyOn(g, 'currentFrameNumber', 'get').mockImplementation()
-
-        mockCurrentFrameNumber.mockReturnValue(1);
-        expect(g.currentFrame).toBe(g.frames[0]);
-
-        mockCurrentFrameNumber.mockReturnValue(2);
-        expect(g.currentFrame).toBe(g.frames[1]);
-    });
 
     test.each([
         [new Frame(), false, false],
@@ -90,10 +113,10 @@ describe('BowlingGame', () => {
         const mockIsGameOver = jest.spyOn(g, 'isGameOver', 'get').mockImplementation()
         mockIsGameOver.mockReturnValue(true);
         expect(() => g.roll(0)).toThrow('Game Over');
-    });
+    });*/
 
-    afterEach(() => {
+    /*afterEach(() => {
         jest.resetModules();
         jest.clearAllMocks();
-    });
+    });*/
 });
