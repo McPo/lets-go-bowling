@@ -14,16 +14,16 @@ export default class Frame {
         this._rolls.push(count);
     }
 
-    public get isComplete() {
-        return this.isStrike || this._rolls.length === ROLLS_PER_FRAME;
-    }
-
     public get score() {
         return sumArray(this._rolls);
     }
 
     public get rolls() {
         return [ ...this._rolls ];
+    }
+
+    public get isComplete() {
+        return this.isStrike || this._rolls.length === ROLLS_PER_FRAME;
     }
 
     public get isSpare() {
