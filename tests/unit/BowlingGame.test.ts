@@ -14,6 +14,22 @@ describe('BowlingGame', () => {
         expect(mockCalculateScore).toHaveBeenCalledWith(g.frames);
     });
 
+    test('.frames returns frames, list ends with Final Frame', () => {
+        const g = new BowlingGame();
+        expect(g.frames).toEqual([
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new FinalFrame()
+        ]);
+    });
+
     test('.roll calls frame.roll', () => {
         const g = new BowlingGame();
         const mockFrameRoll = jest.spyOn(g.currentFrame, 'roll').mockImplementation()
