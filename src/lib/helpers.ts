@@ -1,11 +1,13 @@
 import Frame from "./Frame";
 
+export const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r, 0) // needs test?
+
 export function calculateScore(frames:Frame[]): number {
     return frames.flat().reduce((sum,f,i) => {
-        const nextRolls =  [ frames?.[i+1]?.rolls||0, frames?.[i+2]?.rolls||0 ].flat();
+        const upcomingRolls =  (x:number) : number[] => frames.slice(i+1).map(f => f.rolls).flat().slice(0, x); // needs test?
 
-        if (f.isStrike) return sum + f.score + nextRolls[0] + nextRolls[1];
-        else if (f.isSpare) return sum + f.score + nextRolls[0];
+        if (f.isStrike) return sum + f.score + sumArray(upcomingRolls(2));
+        else if (f.isSpare) return sum + f.score + sumArray(upcomingRolls(1));
         else return sum + f.score
     }, 0);
 }

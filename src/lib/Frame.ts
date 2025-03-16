@@ -1,7 +1,7 @@
+import { sumArray } from './helpers';
+
 export const MAX_PINS = 10;
 export const ROLLS_PER_FRAME = 2;
-
-const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r, 0) // needs test?
 
 export default class Frame {
     protected _rolls : number[];
