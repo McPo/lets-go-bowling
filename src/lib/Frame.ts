@@ -11,6 +11,7 @@ export default class Frame {
     }
 
     public roll(count:number) {
+         // throw error? and add test
         this._rolls.push(count);
     }
 

@@ -13,32 +13,22 @@ describe('BowlingGame', () => {
     });
 
     // roll calls frame.roll
+    // currentframenumber currentframe isGameOver
 
-    //currentframenumber currentframe
-
-    test('Increment frames once completed', () => {
+    test.each([
+        ['Dont increment frame on roll as not completed', false, 1],
+        ['Increment frame on roll as completed', true, 2],
+    ])('%s', (name, completed, finalFrameNumber) => {
         const g = new BowlingGame();
         const mockFrameComplete = jest.spyOn(g.currentFrame, 'isComplete', 'get').mockImplementation()
         expect(g.currentFrameNumber).toEqual(1);
 
-        mockFrameComplete.mockReturnValue(false)
+        mockFrameComplete.mockReturnValue(completed)
         g.roll(0);
-        expect(g.currentFrameNumber).toEqual(1);
-
-        mockFrameComplete.mockReturnValue(false)
-        g.roll(0);
-        expect(g.currentFrameNumber).toEqual(1);
-
-        mockFrameComplete.mockReturnValue(false)
-        g.roll(0);
-        expect(g.currentFrameNumber).toEqual(1);
-
-        mockFrameComplete.mockReturnValue(true)
-        g.roll(0);
-        expect(g.currentFrameNumber).toEqual(2);
+        expect(g.currentFrameNumber).toEqual(finalFrameNumber);
     });
 
-    test('Game over', () => {
+    test('roll returns error if game is over', () => {
         const g = new BowlingGame();
         const mockIsGameOver = jest.spyOn(g, 'isGameOver', 'get').mockImplementation()
         mockIsGameOver.mockReturnValue(true);
