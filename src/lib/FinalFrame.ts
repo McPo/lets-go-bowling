@@ -10,4 +10,5 @@ export default class FinalFrame extends Frame {
     public get isFillBall(): boolean {
         return (this.isSpare || this.isStrike)
     }
+
 }

@@ -27,6 +27,7 @@ export default class BowlingGame {
     }
 
     public roll(count: PinCount) {
+        // Couldve used a custom Error type
         if (!this._frames[this._currentFrameIndex]) throw new Error('Game over');
 
         const currentFrame = this._frames[this._currentFrameIndex];

@@ -19,6 +19,7 @@ export default class Frame {
     }
 
     public roll(count: PinCount) {
+        // Couldve used a custom Error type
         if (this.isComplete) throw new Error('Frame is over');
         this._rolls.push(count);
     }
@@ -45,8 +46,8 @@ export default class Frame {
     }
 
     /*
-        Technically a spare must be accomplished in the *first 2 rolls*
-        This is important when considering a FinalFrame with 3 rolls
+        Technically a strike must be accomplished in the *first roll*
+        This is important when considering a FinalFrame
         However it is also technically the exact logic for any Frame
     */
     public get isStrike(): boolean {
