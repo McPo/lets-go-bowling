@@ -11,7 +11,12 @@ describe('Helpers', () => {
         expect(sumArray(arr)).toEqual(result);
     });
 
-    // Technically not a unit test as Frame.score is called, we could remove it though
+    /*
+        These arent technically unit tests as it calls Frame.score
+        However we need to pass in an array of Frames
+        And then we would just be re-implementing that logic here
+        I dont think its worth it, just to keep the purity of a "unit test"
+    */
     describe('calculateScore', () => {
 
         test('Basic rolls', () => {
