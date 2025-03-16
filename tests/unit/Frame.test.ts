@@ -34,7 +34,13 @@ test.each([
 test.each([
         [ new Frame([5,3]), false ],
         [ new Frame([9,1]), true ],
-        [ new Frame([1,9]), true ]
+        [ new Frame([1,9]), true ],
+        /*
+            For a frame to be considered a spare frame
+            All pins must be knocked down in the first 2 rolls
+            This has an impact on the FinalFrame
+        */
+        [ new Frame([1,0,9]), false ]
     ])('Frame isSpare', (frame, result) => {
     expect(frame.isSpare).toEqual(result);
 });
@@ -42,7 +48,13 @@ test.each([
 test.each([
         [ new Frame([5,3]), false ],
         [ new Frame([9,1]), false ],
-        [ new Frame([10]), true ]
+        [ new Frame([10]), true ],
+        /*
+            For a frame to be considered a spare frame
+            All pins must be knocked down in the first 2 rolls
+            This has an impact on the FinalFrame
+        */
+        [ new Frame([0,10,10]), false ]
     ])('Frame isStrike', (frame, result) => {
     expect(frame.isStrike).toEqual(result);
 });

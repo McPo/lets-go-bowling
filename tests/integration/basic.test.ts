@@ -1,7 +1,7 @@
 import BowlingGame from '@/lib';
 
 describe("Basic Frames", () => {
-    test("Basic Roll", () => {
+    test("Basic roll", () => {
         const game = new BowlingGame();
         [
             5,3,
@@ -52,7 +52,7 @@ describe("Basic Frames", () => {
 });
 
 describe("Final Frame", () => {
-    test("Basic", () => {
+    test("Basic roll", () => {
         const game = new BowlingGame();
         [
             0,0,
