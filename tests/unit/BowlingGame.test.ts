@@ -3,6 +3,7 @@ import Frame from '@/lib/Frame';
 import FinalFrame from '@/lib/FinalFrame';
 
 describe('BowlingGame', () => {
+
     jest.mock('@/lib/Frame', () => {
         /*
             Auto mocking, causes an issue with getters
@@ -17,17 +18,29 @@ describe('BowlingGame', () => {
         }));
     });
 
+    /*
+        Technically testing two things as it also tests the default Frame setup
+        Again I dont think its worth changing just for the sake of purity of unit tests
+    */
     test('.score calls helpers.calculateScore', () => {
         const mockCalculateScore = jest.spyOn(require('@/lib/helpers'), 'calculateScore').mockImplementation()
-
         mockCalculateScore.mockReturnValue(1234);
 
-        const frames  = [new Frame()];
-        const g = new BowlingGame(frames);
-
+        const g = new BowlingGame();
         expect(g.score).toEqual(1234);
         expect(mockCalculateScore).toHaveBeenCalledTimes(1);
-        expect(mockCalculateScore).toHaveBeenCalledWith(frames);
+        expect(mockCalculateScore).toHaveBeenCalledWith([
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new Frame(),
+            new FinalFrame(),
+        ]);
     });
 
     test.each([
