@@ -50,14 +50,14 @@ describe('BowlingGame', () => {
         expect(secondFrameRoll).toHaveBeenCalledTimes(secondFrameRollCallCount);
     });
 
-    test('Game Over', () => {
+    test('Game over', () => {
         const f = new FinalFrame();
         jest.spyOn(f, 'isComplete', 'get').mockReturnValue(true);
 
         const g = new BowlingGame([ f ]);
         g.roll(0)
 
-        expect(() => g.roll(0)).toThrow(new Error('Game Over'));
+        expect(() => g.roll(0)).toThrow(new Error('Game over'));
     });
 
     afterEach(() => {

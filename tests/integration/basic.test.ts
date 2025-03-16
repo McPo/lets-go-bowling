@@ -67,7 +67,7 @@ describe("Final Frame", () => {
             1,2
         ].forEach(p => game.roll(p));
         expect(game.score).toEqual(3);
-        expect(() => game.roll(10)).toThrow('Game Over');
+        expect(() => game.roll(10)).toThrow('Game over');
     });
 
     test("Spare", () => {
@@ -85,7 +85,7 @@ describe("Final Frame", () => {
             9,1,8
         ].forEach(p => game.roll(p));
         expect(game.score).toEqual(9+1+8);
-        expect(() => game.roll(1)).toThrow('Game Over');
+        expect(() => game.roll(1)).toThrow('Game over');
     });
 
     test("Strike", () => {
@@ -103,7 +103,7 @@ describe("Final Frame", () => {
             10,1,8
         ].forEach(p => game.roll(p));
         expect(game.score).toEqual(10+1+8);
-        expect(() => game.roll(10)).toThrow('Game Over');
+        expect(() => game.roll(10)).toThrow('Game over');
     });
 
     test("Perfect Game", () => {
@@ -123,6 +123,6 @@ describe("Final Frame", () => {
             10
         ].forEach(p => game.roll(p));
         expect(game.score).toEqual(300);
-        expect(() => game.roll(10)).toThrow('Game Over');
+        expect(() => game.roll(10)).toThrow('Game over');
     });
 });

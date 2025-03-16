@@ -22,7 +22,7 @@ export default class BowlingGame {
     }
 
     public roll(count: number) {
-        if (!this._frames[this._currentFrameIndex]) throw new Error('Game Over');
+        if (!this._frames[this._currentFrameIndex]) throw new Error('Game over');
 
         const currentFrame = this._frames[this._currentFrameIndex];
         currentFrame.roll(count);
