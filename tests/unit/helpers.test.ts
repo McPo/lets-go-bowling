@@ -1,6 +1,13 @@
 import Frame from '@/lib/Frame';
 import FinalFrame from '@/lib/FinalFrame';
-import { calculateScore } from '@/lib/helpers';
+import { sumArray, calculateScore } from '@/lib/helpers';
+
+test.each([
+    [[], 0],
+    [[1,2,3], 6]
+])('Sum array', (arr, result) => {
+    expect(sumArray(arr)).toEqual(result);
+});
 
 test('Basic rolls', () => {
     expect(calculateScore([

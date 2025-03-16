@@ -1,9 +1,10 @@
 import Frame from "./Frame";
 
-export const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r, 0) // needs test?
+export const sumArray = (arr: number[]) => arr.reduce((sum, r) => sum+r, 0)
 
 export function calculateScore(frames:Frame[]): number {
     return frames.flat().reduce((sum,f,i) => {
+        // Maybe separate out and test?
         const upcomingRolls =  (x:number) : number[] => frames.slice(i+1, i+x+1).map(f => f.rolls).flat().slice(0, x);
 
         if (f.isStrike) return sum + f.score + sumArray(upcomingRolls(2));
