@@ -47,8 +47,8 @@ describe('BowlingGame', () => {
         ]);
 
         firstFrameIsComplete.mockReturnValue(isComplete);
-        g.roll(123);
-        g.roll(123);
+        g.roll(10);
+        g.roll(0);
         expect(firstFrameRoll).toHaveBeenCalledTimes(firstFrameRollCallCount);
         expect(secondFrameRoll).toHaveBeenCalledTimes(secondFrameRollCallCount);
     });
