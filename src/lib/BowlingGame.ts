@@ -29,15 +29,19 @@ export default class BowlingGame {
     }
 
     public get isGameOver() {
-        return this.currentFrame === undefined;
+        return this.currentFrameNumber === this._frames.length && this.currentFrame.isComplete;
     }
 
     public get currentFrameNumber() {
-        return this._currentFrameIndex+1; // need to prevent going above whats allowed? test still to be written
+        return Math.min(this._currentFrameIndex+1, this._frames.length);
     }
 
-    public get currentFrame() {
-        return this._frames[this._currentFrameIndex];
+    public get currentFrame(): Readonly<Frame> {
+        return this._frames[this.currentFrameNumber-1];
+    }
+
+    public get frames(): ReadonlyArray<Readonly<Frame>> {
+        return this._frames
     }
 
     public get score() {

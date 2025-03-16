@@ -9,7 +9,7 @@ describe('BowlingGame', () => {
         const g = new BowlingGame();
         expect(g.score).toEqual(1234);
         expect(mockCalculateScore).toHaveBeenCalledTimes(1);
-        expect(mockCalculateScore).toHaveBeenCalledWith((g as any)._frames) // HACK
+        expect(mockCalculateScore).toHaveBeenCalledWith(g.frames);
     });
 
     // roll calls frame.roll
