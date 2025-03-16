@@ -2,6 +2,16 @@ import BowlingGame from '@/lib/BowlingGame';
 import Frame from '@/lib/Frame';
 import FinalFrame from '@/lib/FinalFrame';
 
+jest.mock('@/lib/Frame', () => {
+    // Auto mocking doesnt support getters annoyingly
+    return jest.fn().mockImplementation(() => ({
+        roll: jest.fn(),
+        get isComplete() {
+            return false;
+        }
+    }));
+});  
+
 describe('BowlingGame', () => {
 
     test('.score calls helpers.calculateScore', () => {
@@ -42,7 +52,6 @@ describe('BowlingGame', () => {
 
     test('Game Over', () => {
         const f = new FinalFrame();
-        jest.spyOn(f, 'roll').mockImplementation();
         jest.spyOn(f, 'isComplete', 'get').mockReturnValue(true);
 
         const g = new BowlingGame([ f ]);

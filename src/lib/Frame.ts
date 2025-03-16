@@ -7,6 +7,7 @@ export default class Frame {
     protected _rolls : number[]; // can we limit this here
 
     constructor(rolls:number[] = []) { // constructor no longer needed, have test helper instead
+        console.log('here i am');
         this._rolls = rolls;
     }
 

@@ -15,6 +15,7 @@ describe('Helpers', () => {
     describe('calculateScore', () => {
 
         test('Basic rolls', () => {
+
             expect(calculateScore([
                 new Frame([5,3]),
                 new Frame([2,1])
