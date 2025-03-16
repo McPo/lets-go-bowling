@@ -3,7 +3,11 @@ import FinalFrame from '@/lib/FinalFrame';
 import { calculateScore } from '@/lib/helpers';
 
 export default class BowlingGame {
-    private _frames : Frame[] = [
+    /*
+        Could generate this in the constructor
+        And have a dynamic frame count might be useful for tests
+    */
+    private _frames: Frame[] = [
         new Frame(),
         new Frame(),
         new Frame(),
@@ -15,24 +19,28 @@ export default class BowlingGame {
         new Frame(),
         new FinalFrame(),
     ];
-    private _currentFrameIndex : number = 0;
+    private _currentFrameIndex: number = 0;
 
-    public roll(numPins:number) {
-        if (this.isGameOver) throw 'Game Over'; // need to decide if i like using getters internal, makes it easier to mock
+    public roll(count: number) {
+        if (this.isGameOver) throw new Error('Game Over');
 
         const currentFrame = this.currentFrame;
-        currentFrame.roll(numPins);
+        currentFrame.roll(count);
 
         if (currentFrame.isComplete) {
             this._currentFrameIndex++;
         }
     }
 
-    public get isGameOver() {
+    public get isGameOver(): boolean {
         return this.currentFrame instanceof FinalFrame && this.currentFrame.isComplete;
     }
 
-    public get currentFrameNumber() {
+    /*
+        Could've returned undefined at end of game instead
+        Or throw Game Over
+    */
+    public get currentFrameNumber(): number {
         return Math.min(this._currentFrameIndex+1, this._frames.length);
     }
 
@@ -44,7 +52,8 @@ export default class BowlingGame {
         return this._frames
     }
 
-    public get score() {
+    public get score(): number {
         return calculateScore(this._frames)
     }
+
 }

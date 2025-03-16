@@ -51,6 +51,13 @@ describe('BowlingGame', () => {
         expect(g.currentFrameNumber).toEqual(finalFrameNumber);
     });
 
+    test('currentFrameNumber maxes out at 10 after game over', () => {
+        const g = new BowlingGame();
+        [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10].map(c => g.roll(c));
+        expect(() => g.roll(0)).toThrow('Game Over');
+        expect(g.currentFrameNumber).toEqual(10);
+    });
+
     test('currentFrame', () => {
         const g = new BowlingGame();
         const mockCurrentFrameNumber= jest.spyOn(g, 'currentFrameNumber', 'get').mockImplementation()
