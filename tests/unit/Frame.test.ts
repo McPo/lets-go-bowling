@@ -7,16 +7,16 @@ describe('Frame', () => {
         [ 'Empty', new Frame([]), 0],
         [ 'Single roll', new Frame([1]), 1],
         [ 'Two rolls', new Frame([5,3]), 8],
-    ])('Simple frame score %s', (name, f, result) => {
+    ])('Simple frame score %s', (_name, f, result) => {
         expect(f.pinCount).toEqual(result);
     });
 
-    test('.rolls returns rolls', () => {
+    test('Get rolls', () => {
         const f = new Frame([5,3]);
         expect(f.rolls).toEqual([5,3]);
     });
 
-    test('.roll records rolls', () => {
+    test('Record roll', () => {
         const f = new Frame();
         f.roll(8);
         f.roll(5);
@@ -28,7 +28,7 @@ describe('Frame', () => {
         I would normaly just try rolling again in the above test and assert the error
         However this might be more in keeping with the unit tests you specified
     */
-    test('.roll ', () => {
+    test('Roll on finished frame', () => {
         const f = new Frame();
         const firstFrameRoll = jest.spyOn(f, 'isComplete', 'get').mockReturnValue(true);
         expect(() => f.roll(10)).toThrow('Frame is over');
@@ -37,10 +37,10 @@ describe('Frame', () => {
     test.each([
         [ 'Empty', new Frame([]), false ],
         [ 'Incomplete', new Frame([1]), false ],
-        [ 'Stike', new Frame([10]), true ],
+        [ 'Strike', new Frame([10]), true ],
         [ 'Spare', new Frame([9,1]), true ],
         [ 'Full', new Frame([5,3]), true ],
-    ])('isComplete %s', (name, f, result) => {
+    ])('isComplete %s', (_name, f, result) => {
         expect(f.isComplete).toEqual(result);
     });
 

@@ -7,7 +7,7 @@ describe('Helpers', () => {
     test.each([
         ['Empty', [], 0],
         ['Not empty', [1,2,3], 6]
-    ])('Sum array %s', (name, arr, result) => {
+    ])('Sum array %s', (_name, arr, result) => {
         expect(sumArray(arr)).toEqual(result);
     });
 

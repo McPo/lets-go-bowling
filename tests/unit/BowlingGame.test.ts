@@ -47,11 +47,12 @@ describe('BowlingGame', () => {
         ['Stay on current frame as not completed', false, 2, 0],
         ['Move to next frame as completed', true, 1, 1],
     ])('%s', (_name, isComplete, firstFrameRollCallCount, secondFrameRollCallCount) => {
+
         const firstFrame = new Frame();
         const firstFrameRoll = jest.spyOn(firstFrame, 'roll').mockImplementation();
         const firstFrameIsComplete = jest.spyOn(firstFrame, 'isComplete', 'get').mockImplementation();
-        const secondFrame = new Frame();
 
+        const secondFrame = new Frame();
         const secondFrameRoll = jest.spyOn(secondFrame, 'roll').mockImplementation();
 
         const g = new BowlingGame([
@@ -66,7 +67,7 @@ describe('BowlingGame', () => {
         expect(secondFrameRoll).toHaveBeenCalledTimes(secondFrameRollCallCount);
     });
 
-    test('Game over', () => {
+    test('Game over when last frame is completed', () => {
         const f = new FinalFrame();
         /*
             Initially it is not completed until after the roll
