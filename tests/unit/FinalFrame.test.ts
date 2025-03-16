@@ -5,7 +5,7 @@ test('toString', () => {
     expect(f.toString()).toEqual('FinalFrame[3,6]');
 });
 
-test.only.each([
+test.each([
     [ new FinalFrame([8, 1]), true ],
     [ new FinalFrame([9, 1]), false ],
     [ new FinalFrame([1, 9]), false ],
