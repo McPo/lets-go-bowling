@@ -33,4 +33,8 @@ export default class Frame {
     public get isStrike() {
         return this._rolls[0] === MAX_PINS;
     }
+
+    toString() {
+        return `${this.constructor.name}[${this._rolls.toString()}]` 
+    }
 }

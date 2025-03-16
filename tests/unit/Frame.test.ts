@@ -1,5 +1,10 @@
 import Frame from '@/lib/Frame';
 
+test('toString', () => {
+    const f = new Frame([3,6])
+    expect(f.toString()).toEqual('Frame[3,6]');
+});
+
 test.each([
     [ new Frame([]), 0],
     [ new Frame([1]), 1],

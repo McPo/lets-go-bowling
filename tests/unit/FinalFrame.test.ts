@@ -1,6 +1,11 @@
 import FinalFrame from '@/lib/FinalFrame';
 
-test.each([
+test('toString', () => {
+    const f = new FinalFrame([3,6])
+    expect(f.toString()).toEqual('FinalFrame[3,6]');
+});
+
+test.only.each([
     [ new FinalFrame([8, 1]), true ],
     [ new FinalFrame([9, 1]), false ],
     [ new FinalFrame([1, 9]), false ],
@@ -8,7 +13,7 @@ test.each([
     [ new FinalFrame([10, 1]), false ],
     [ new FinalFrame([10, 1, 2]), true ],
     [ new FinalFrame([10, 10, 10]), true ],
-])('Is Complete', (f, result) => {
+])('%s Is Complete', (f, result) => {
     expect(f.isComplete).toEqual(result);
 });
 
