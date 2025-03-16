@@ -47,26 +47,7 @@ describe('BowlingGame', () => {
         mockCurrentFrameNumber.mockReturnValue(2);
         expect(g.currentFrame).toBe(g.frames[1]);
     });
-/*
-    test.each([
-        [1, false, false],
-        [1, true, false],
-        [9, false, false],
-        [9, true, false],
-        [10, false, false],
-        [10, true, true],
-    ])
-    ('isGameOver %s', (frameCount, frameCompleted, gameOver) => {
-        const g = new BowlingGame();
-        const mockCurrentFrameIsComplete = jest.spyOn(g.currentFrame, 'isComplete', 'get').mockImplementation()
-        const mockCurrentFrameNumber = jest.spyOn(g, 'currentFrameNumber', 'get').mockImplementation()
 
-        mockCurrentFrameNumber.mockReturnValue(frameCount);
-        mockCurrentFrameIsComplete.mockReturnValue(frameCompleted);
-
-        expect(g.isGameOver).toBe(gameOver);
-    });
-*/
     test.each([
         [new Frame(), false, false],
         [new Frame(), true, false],
